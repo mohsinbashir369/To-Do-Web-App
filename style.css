@@ -1,0 +1,466 @@
+/* Basic Reset and Variables */
+:root {
+    --bg-dark-primary: #121212; /* Darker background */
+    --bg-dark-secondary: #1a1a1a; /* Slightly lighter for cards */
+    --text-light: #e0e0e0; /* Off-white for main text */
+    --text-muted: #9e9e9e; /* Muted text for details */
+    --accent-blue: #8e24aa; /* Deep Purple */
+    --accent-green: #43a047; /* Success Green */
+    --accent-yellow: #fdd835; /* Warning Yellow */
+    --accent-red: #e53935; /* Error Red */
+    --border-color: #333;
+    --box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5); /* Stronger shadow */
+    --card-gradient: linear-gradient(135deg, var(--bg-dark-secondary) 0%, #252525 100%);
+    --button-gradient: linear-gradient(45deg, var(--accent-blue) 0%, #ab47bc 100%);
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Poppins', sans-serif; /* Modern font */
+    background: var(--bg-dark-primary);
+    color: var(--text-light);
+    line-height: 1.6;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Header Styling */
+header {
+    background: linear-gradient(90deg, #3f004f, #8e24aa); /* Gradient header */
+    padding: 1.8rem 0;
+    text-align: center;
+    box-shadow: var(--box-shadow);
+    color: #fff;
+}
+
+.header-content h1 {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.header-content p {
+    font-size: 1.1rem;
+    color: #e0e0e0;
+}
+
+/* Wrapper for main content */
+.wrapper {
+    flex-grow: 1;
+    padding: 30px 20px;
+    display: flex;
+    justify-content: center; /* Center the container */
+    align-items: flex-start; /* Align to the top of the flex container */
+}
+
+/* Main Container (3-Column Layout) */
+.container {
+    display: flex;
+    max-width: 1500px; /* Wider container */
+    width: 100%; /* Ensure it takes full width up to max */
+    gap: 30px; /* Increased gap */
+    
+    /* Responsive behavior for smaller screens */
+    flex-wrap: wrap; /* Allow columns to wrap */
+    justify-content: center; /* Center columns when wrapped */
+}
+
+.task-column, .app-center {
+    padding: 25px;
+    border-radius: 12px; /* More rounded corners */
+    background: var(--card-gradient); /* Subtle gradient for cards */
+    box-shadow: var(--box-shadow);
+    border: 1px solid var(--border-color); /* Subtle border */
+    display: flex;
+    flex-direction: column;
+}
+
+.task-column {
+    flex: 1;
+    min-width: 300px; /* Minimum width before wrapping */
+}
+
+.app-center {
+    flex: 1.5; /* Center column is significantly wider */
+    min-width: 350px;
+}
+
+/* Headings */
+h2 {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    font-size: 1.6rem;
+    color: var(--accent-blue);
+    border-bottom: 2px solid var(--border-color);
+    padding-bottom: 15px;
+    margin-bottom: 25px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/* Form Styling */
+#task-form input[type="text"], 
+#task-form input[type="date"], 
+#task-form input[type="time"],
+#task-form select {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 15px;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    background-color: #2c2c2c; /* Slightly different input bg */
+    color: var(--text-light);
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+#task-form input::placeholder {
+    color: var(--text-muted);
+}
+
+#task-form input:focus, #task-form select:focus {
+    border-color: var(--accent-blue);
+    box-shadow: 0 0 8px rgba(var(--accent-blue), 0.5);
+    outline: none;
+}
+
+.form-row {
+    display: flex;
+    flex-wrap: wrap; /* Allow form groups to wrap */
+    gap: 15px;
+    margin-bottom: 15px;
+}
+
+.form-group {
+    flex: 1; /* Allow groups to take available space */
+    min-width: 150px; /* Minimum width for each group */
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group label {
+    margin-bottom: 8px;
+    color: var(--text-light);
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+/* Button Styling */
+button {
+    padding: 12px 20px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: 600;
+    font-size: 1rem;
+    letter-spacing: 0.5px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+#add-button {
+    width: 100%;
+    background: var(--button-gradient);
+    color: #fff;
+    box-shadow: 0 4px 10px rgba(var(--accent-blue), 0.4);
+    margin-top: 20px;
+}
+
+#add-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(var(--accent-blue), 0.6);
+}
+
+/* Filter Controls */
+.filter-controls {
+    margin-top: 40px;
+    padding-top: 25px;
+    border-top: 1px solid var(--border-color);
+}
+
+.filter-controls h3 {
+    margin-bottom: 15px;
+    color: var(--text-light);
+    font-weight: 600;
+    font-size: 1.2rem;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.filter-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.filter-btn {
+    background-color: #3a3a3a;
+    color: var(--text-light);
+    border: 1px solid var(--accent-blue);
+    padding: 8px 15px;
+    font-size: 0.9rem;
+}
+
+.filter-btn:hover {
+    background-color: var(--accent-blue);
+    color: #fff;
+    transform: none; /* Override general button hover */
+    box-shadow: none;
+}
+
+.filter-btn.active {
+    background: var(--button-gradient);
+    color: #fff;
+    border-color: var(--accent-blue);
+    box-shadow: 0 2px 8px rgba(var(--accent-blue), 0.4);
+}
+
+/* Task List Container (for scrollability) */
+.task-list-container {
+    flex-grow: 1; /* Allows it to expand and fill available space */
+    overflow-y: auto; /* Enable vertical scrolling */
+    padding-right: 5px; /* Space for scrollbar */
+}
+/* Custom Scrollbar for better aesthetics */
+.task-list-container::-webkit-scrollbar {
+    width: 8px;
+}
+
+.task-list-container::-webkit-scrollbar-track {
+    background: var(--bg-dark-secondary);
+    border-radius: 10px;
+}
+
+.task-list-container::-webkit-scrollbar-thumb {
+    background: var(--accent-blue);
+    border-radius: 10px;
+    border: 2px solid var(--bg-dark-secondary);
+}
+
+.task-list-container::-webkit-scrollbar-thumb:hover {
+    background: #ab47bc;
+}
+
+
+/* Task Item Styling */
+.task-item {
+    display: flex;
+    align-items: flex-start; /* Align items to the top */
+    padding: 18px;
+    margin-bottom: 15px;
+    background-color: #2c2c2c; /* Darker than card background */
+    border-left: 5px solid var(--accent-blue);
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.task-item:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.6);
+}
+
+.task-details {
+    flex-grow: 1;
+    margin-right: 15px;
+}
+
+.task-text-display {
+    font-size: 1.15rem;
+    font-weight: 500;
+    color: var(--text-light);
+    margin-bottom: 5px;
+}
+
+.task-meta {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    display: flex;
+    flex-wrap: wrap; /* Allow meta items to wrap */
+    gap: 15px; /* Space between meta items */
+}
+
+.task-meta span i {
+    margin-right: 5px;
+    color: var(--accent-blue); /* Icons stand out */
+}
+
+.task-list-tag {
+    background-color: #8e24aa33; /* Light transparent purple */
+    padding: 3px 8px;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--accent-blue);
+}
+
+.task-actions {
+    display: flex;
+    gap: 8px; /* Space between action buttons */
+    align-items: center; /* Vertically align buttons */
+    flex-shrink: 0; /* Prevent buttons from shrinking */
+}
+
+/* Completed Task Styling */
+.completed {
+    border-left-color: var(--accent-green); /* Green border for completed tasks */
+    opacity: 0.7;
+    background-color: #222; /* Slightly different background for completed */
+}
+
+.completed .task-text-display {
+    text-decoration: line-through;
+    color: #888;
+}
+
+.completed .task-list-tag {
+    background-color: #43a04733;
+    color: var(--accent-green);
+}
+
+/* Button Colors for Task Actions */
+.edit-btn {
+    background-color: var(--accent-yellow);
+    color: var(--bg-dark-primary);
+    box-shadow: 0 2px 5px rgba(var(--accent-yellow), 0.3);
+}
+.edit-btn:hover {
+    background-color: #fbc02d;
+    transform: translateY(-1px);
+}
+
+.delete-btn {
+    background-color: var(--accent-red);
+    color: #fff;
+    box-shadow: 0 2px 5px rgba(var(--accent-red), 0.3);
+}
+.delete-btn:hover {
+    background-color: #d32f2f;
+    transform: translateY(-1px);
+}
+
+.complete-btn {
+    background-color: var(--accent-green);
+    color: #fff;
+    box-shadow: 0 2px 5px rgba(var(--accent-green), 0.3);
+}
+.complete-btn:hover {
+    background-color: #388e3c;
+    transform: translateY(-1px);
+}
+
+/* Edit Mode Styling */
+.edit-input {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid var(--accent-blue);
+    border-radius: 4px;
+    background-color: var(--bg-dark-primary);
+    color: var(--text-light);
+    font-size: 1.15rem;
+    margin-bottom: 5px; /* Align with task-text-display */
+}
+
+/* Empty List Placeholder */
+.empty-message {
+    color: var(--text-muted);
+    padding: 30px 20px;
+    text-align: center;
+    font-style: italic;
+    font-size: 1.1rem;
+    background-color: #2c2c2c;
+    border-radius: 8px;
+    margin-top: 15px;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 1200px) {
+    .container {
+        flex-direction: column; /* Stack columns vertically */
+        align-items: center; /* Center them */
+    }
+
+    .task-column, .app-center {
+        width: 90%; /* Take more width */
+        max-width: 600px; /* Limit maximum width */
+        margin-bottom: 20px; /* Space between stacked columns */
+    }
+}
+
+@media (max-width: 768px) {
+    header h1 {
+        font-size: 2rem;
+    }
+    header p {
+        font-size: 0.9rem;
+    }
+    .wrapper {
+        padding: 20px 10px;
+    }
+    .task-column, .app-center {
+        width: 100%;
+        padding: 15px;
+    }
+    h2 {
+        font-size: 1.4rem;
+        margin-bottom: 15px;
+    }
+    .form-row {
+        flex-direction: column;
+        gap: 10px;
+    }
+    .filter-buttons {
+        justify-content: center;
+    }
+    .task-item {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    .task-actions {
+        margin-top: 15px;
+        justify-content: flex-end; /* Align actions to the right when stacked */
+    }
+    .task-details {
+        margin-right: 0;
+        margin-bottom: 10px;
+    }
+}
+/* Styling for Overdue Tag */
+.overdue-tag {
+    font-weight: 600;
+    color: var(--accent-red); /* Red color for warning */
+    background-color: #e5393520; /* Light red background */
+    padding: 3px 8px;
+    border-radius: 4px;
+    font-size: 0.8rem;
+}
+
+.overdue-tag i {
+    margin-right: 5px;
+    color: var(--accent-red);
+}
+
+/* Ensure the completed overdue task has muted color */
+.completed .overdue-tag {
+    color: #888;
+    background-color: transparent;
+}
